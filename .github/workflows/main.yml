@@ -3,10 +3,34 @@ on: push
 
 jobs:
   build:
-    name: Hello world action
-    runs-on: ubuntu-latest
+    name: Hello macOS world action
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: ./action-a
+    - name: Install Docker Desktop
+      run: |
+        sudo ls
+        echo "Downloading DMG."
+        curl -Lo docker.dmg https://download.docker.com/mac/stable/28905/Docker.dmg
+        echo "Extract DMG."
+        hdiutil attach docker.dmg
+        (cd /Volumes/Docker/ ; cp -av Docker.app /Applications/Docker.app)
+        hdiutil detach /Volumes/Docker/
+        echo "Install Docker."
+        sudo /Applications/Docker.app/Contents/MacOS/Docker --quit-after-install --unattended
+    - name: Start Docker
+      run: |
+        echo "Start Docker."
+        sh -c "sudo /Applications/Docker.app/Contents/MacOS/Docker --install-privileged-components --unattended" &
+        echo "Wait a little bit..."
+        sleep 100
+        sudo docker version
+        sudo docker run hello-world
+        sudo docker images
+      
+    - name: Build image
+      run: sudo docker build -t hello .
+    - name: Run container
+      run: sudo docker run -e MY_NAME hello
       env:
         MY_NAME: "Mona"
