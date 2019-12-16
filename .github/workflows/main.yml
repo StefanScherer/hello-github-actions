@@ -7,6 +7,9 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: ./action-a
+    - name: Build image
+      run: docker build -t hello action-a 
+    - name: Run container
+      run: docker run hello
       env:
         MY_NAME: "Mona"
