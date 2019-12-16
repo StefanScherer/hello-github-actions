@@ -28,13 +28,13 @@ jobs:
         sh -c "sudo /Applications/Docker.app/Contents/MacOS/Docker --install-privileged-components --unattended" &
         echo "Wait a little bit..."
         sleep 100
-        sudo docker version
-        sudo docker run hello-world
-        sudo docker images
+        docker version
+        docker run hello-world
+        docker images
       
     - name: Build image
-      run: sudo docker build -t hello action-a
+      run: docker build -t hello action-a
     - name: Run container
-      run: sudo docker run -e MY_NAME hello
+      run: docker run -e MY_NAME hello
       env:
         MY_NAME: "Mona"
