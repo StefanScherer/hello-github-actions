@@ -14,11 +14,11 @@ jobs:
       env:
         MY_NAME: "Mona"
     - name: Get Windows features
-      run: Get-WindowsFeature
+      run: powershell -Command Get-WindowsFeature
     - name: Get Virtualization Firmware enabled
-      run: (GWMI Win32_Processor).VirtualizationFirmwareEnabled
+      run: powershell -Command (GWMI Win32_Processor).VirtualizationFirmwareEnabled
     - name: Get Second Level Address Translation
-      run: (GWMI Win32_Processor).SecondLevelAddressTranslationExtensions
+      run: powershell -Command (GWMI Win32_Processor).SecondLevelAddressTranslationExtensions
     - name: Run container in hyperv isolation
       run: docker run --isolation=hyperv -e MY_NAME hello
       env:
