@@ -7,6 +7,10 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v1
+    - name: List CPU features
+      run: |
+        sysctl kern.hv_support
+        sysctl machdep.cpu.features
     - name: Install Docker Desktop
       run: |
         sudo ls
