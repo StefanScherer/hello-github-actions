@@ -10,5 +10,4 @@ LABEL "homepage"="http://github.com/actions"
 LABEL "maintainer"="Octocat <octocat@github.com>"
 
 ADD entrypoint.bat /entrypoint.bat
-RUN chmod +x /entrypoint.bat
 ENTRYPOINT ["cmd.exe", "/C", "entrypoint.bat"]

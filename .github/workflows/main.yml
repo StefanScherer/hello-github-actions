@@ -10,6 +10,6 @@ jobs:
     - name: Build image
       run: docker build -t hello action-a 
     - name: Run container
-      run: docker run hello
+      run: docker run -e MY_NAME hello
       env:
         MY_NAME: "Mona"
