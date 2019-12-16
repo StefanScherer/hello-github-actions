@@ -33,7 +33,7 @@ jobs:
         sudo docker images
       
     - name: Build image
-      run: sudo docker build -t hello .
+      run: sudo docker build -t hello action-a
     - name: Run container
       run: sudo docker run -e MY_NAME hello
       env:
