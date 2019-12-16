@@ -13,3 +13,7 @@ jobs:
       run: docker run -e MY_NAME hello
       env:
         MY_NAME: "Mona"
+    - name: Run container in hyperv isolation
+      run: docker run --isolation=hyperv -e MY_NAME hello
+      env:
+        MY_NAME: "Mona"        
